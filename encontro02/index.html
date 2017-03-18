@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Formulário de contratação</title>
+  </head>
+  <body>
+    <h1>Formulário de contratação</h1>
+    <form>
+      <label>Nome</label><br/>
+      <input type='text' name='nome'/>
+      <br/>
+
+      <label>Empresa</label><br/>
+      <input type='text' name='empresa'/>
+      <br/>
+
+      <label>Empresa Brasileira</label><br/>
+      <input type='radio' name='brasileira' value='sim'> Sim
+      <input type='radio' name='brasileira' value='nao'> Não
+      <input type='radio' name='brasileira' value='acre'> Acre
+      <br/>
+
+      <label>Tipo de projeto</label><br/>
+      <select>
+        <option value='web'>Web</option>
+        <option value='web'>Mobile</option>
+        <option value='web'>Desktop</option>
+      </select>
+
+      <br/>
+      <label>Linguagens e tecnologias</label><br/>
+      <input type='checkbox' name='banco_dados' > Banco de dados
+      <input type='checkbox' name='python' > Python
+      <input type='checkbox' name='javascript' > Javascript
+      <input type='checkbox' name='nodejs'> NodeJs
+      <br/>
+
+      <label>Descrição</label><br/>
+      <textarea></textarea>
+
+      <br/>
+      <input type='submit'/>
+    </form>
+  </body>
+</html>
