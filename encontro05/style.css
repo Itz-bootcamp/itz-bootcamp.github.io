@@ -1,0 +1,92 @@
+.pagina {
+  width: 600px;
+  border-right-width: 3px;
+  border-right-color: black;
+  border-right-style: solid;
+}
+
+.secao-topo {
+  width: 100%;
+  height: 150px;
+  background-color: #CCCCCC;
+}
+
+.secao-topo h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 65px;
+}
+
+.secao-meio {
+  width: 100%;
+  height: 450px;
+  background-color: #BBBBBB;
+}
+
+.secao-meio > .menu-lateral {
+  width: 200px;
+  height: 100%;
+  float: left;
+}
+
+.secao-meio > .menu-lateral {
+  width: 200px;
+  height: 100%;
+  float: left;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: red;
+}
+
+.secao-meio > .conteudo {
+  width: 396px;
+  height: 100%;
+  float: right;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: green;
+}
+
+.secao-inferior {
+  width: 100%;
+  height: 120px;
+  background-color: #AAAAAA;
+}
+
+.conteudo .noticia {
+  width: auto;
+  height: 85px;
+  padding: 10px;
+  background-color: #FBFBFB;
+  border-bottom-color: red;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.conteudo .noticia:hover {
+  background-color: #F0F0F0;
+}
+
+.conteudo .noticia .titulo {
+  font-size: 16px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.conteudo .noticia .imagem {
+  float: left;
+  width: 75px;
+}
+
+.conteudo .noticia .imagem img {
+  width: 100%;
+  height: auto;
+}
+
+.conteudo .noticia .resumo {
+  width: 289px;
+  font-size: 12px;
+  margin-left: 4px;
+  float:right;
+  font-weight: lighter;
+}
