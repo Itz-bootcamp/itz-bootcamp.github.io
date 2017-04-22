@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script>
+
+      function min(a, b)
+      {
+        if (a < b)
+          return a;
+        return b;
+      }
+
+      function max(a, b)
+      {
+        if (a > b)
+          return a;
+        return b;
+      }
+
+      function calc_imposto(valor_bruto)
+      {
+        var imposto = 0;
+        // Faixa isenção
+        valor_bruto -= min(27000, valor_bruto);
+
+        // Faixa 2, 10% de imposto
+        var valor_f2 = min(15000, valor_bruto);
+
+        imposto += valor_f2 * 0.1;
+        valor_bruto -= valor_f2;
+
+        // Faixa 3, 20% de imposto sobre o restante
+        imposto += valor_bruto * 0.2;
+
+        return imposto;
+      }
+
+      function div7(max)
+      {
+        var r = '';
+        for (var i = 7; i <= max; i += 7)
+        {
+          r = r + ' ' + i;
+        }
+        return r;
+      }
+
+      function binario(num)
+      {
+        var r = '';
+        while (num > 0) {
+          console.debug('Num ', num);
+          r += num % 2;
+          num = parseInt(num / 2);
+        }
+        return r;
+      }
+
+      var num = parseInt(prompt('Digite numero'));
+      alert('Binario ' + binario(num));
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>
