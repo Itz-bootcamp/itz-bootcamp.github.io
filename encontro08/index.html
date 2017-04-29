@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <style>
+      .box {
+        width: 400px;
+        height: 400px;
+        background-color: #DFDFDF;
+      }
+      .inner-box {
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='box'>
+      <div class='inner-box'>
+      </div>
+    </div>
+
+    <div class='controlls'>
+      <button onclick="clickLeft()">left</button>
+      <button onclick="clickRight()">right</button>
+      <button onclick="clickUp()">up</button>
+      <button onclick="clickDown()">down</button>
+    </div>
+
+    <div class='controlls'>
+      <label>left</label>
+      <input type='text' id='pos-left'>
+      <label>top</label>
+      <input type='text' id='pos-top'>
+      <button onclick="setPos()">set</button>
+    </div>
+  </body>
+
+  <script>
+
+
+    var inner_box = document.querySelector(".inner-box");
+    var left_pos = 0;
+    var top_pos = 0;
+
+    document.onkeydown = function(evt) {
+      //console.debug('onkeydown', evt);
+      if (evt.code == 'ArrowUp')
+        clickUp();
+      else if (evt.code == 'ArrowDown')
+        clickDown();
+      else if (evt.code == 'ArrowLeft')
+        clickLeft();
+      else if (evt.code == 'ArrowRight')
+        clickRight();
+    }
+
+    function setPos() {
+      left_pos = parseInt(document.querySelector('#pos-left').value)
+      top_pos = parseInt(document.querySelector('#pos-top').value)
+      console.debug('Set pos', left_pos, top_pos);
+      inner_box.style.left = left_pos + 'px';
+      inner_box.style.top = top_pos + 'px';
+    }
+
+    function clickLeft() {
+      left_pos -= 5;
+      inner_box.style.left = left_pos + 'px';
+    }
+
+    function clickRight() {
+      left_pos += 5;
+      inner_box.style.left = left_pos + 'px';
+    }
+
+    function clickUp() {
+      top_pos -= 5;
+      inner_box.style.top = top_pos + 'px';
+    }
+
+    function clickDown() {
+      top_pos += 5;
+      inner_box.style.top = top_pos + 'px';
+    }
+    // Objetos
+    function objetosDemo()
+    {
+      var O = {};
+      O['nome'] = 'Thiago';
+      O['pais'] = 'Brasil';
+      O.imprimir = function() {
+        console.debug('Nome', this['nome']);
+        console.debug('Pais', this['pais']);
+      }
+
+      O.imprimir();
+    }
+
+    // Array
+    function arrayDemo()
+    {
+      var A = ['a', 1, 43.45];
+      console.debug('A = ', A);
+      A.push('K');
+      console.debug('A = ', A);
+      A.push('S');
+      console.debug('A = ', A);
+
+      for (var i = 0; i < A.length; i++) {
+        console.debug('A['+i+']', A[i]);
+      }
+    }
+
+
+  </script>
+</html>
