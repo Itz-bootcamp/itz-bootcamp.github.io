@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <style>
+      #output {
+        font-size: 30px;
+        background: #EFEFEF;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+    <input type='text' id='input'></input>
+    <div>
+      <span id='output'></span>
+    </div>
+  </body>
+  <script>
+    function showChars(str)
+    {
+      for (var i = 0; i < str.length; i++) {
+        console.debug(i, str.charAt(i));
+      }
+    }
+
+    var input_field = $('#input');
+    var output_field = $('#output');
+
+    var dic = [
+      {
+        er: /laranja /g,
+        sub: 'orange '
+      },
+      {
+        er: /abacaxi /g,
+        sub: 'pineapple '
+      },
+      {
+        er: /como /g,
+        sub: 'eat '
+      },
+      {
+        er: /eu /g,
+        sub: 'I '
+      },
+      {
+        er: / e /g,
+        sub: ' and '
+      }
+    ];
+    function update() {
+      var r = $(input_field).val();
+      for (var i = 0; i < dic.length; i++) {
+        r = r.replace(dic[i].er, dic[i].sub);
+      }
+      $(output_field).html(r);
+    }
+    $(input_field).change(update);
+    $(input_field).keydown(update);
+
+  </script>
+</html>
