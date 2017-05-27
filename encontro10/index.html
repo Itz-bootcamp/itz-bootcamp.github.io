@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: rgb(255, 0, 0);
+      }
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: #EFEFEF;
+        display: none;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+    <div class='box'>
+    </div>
+
+    <div class='container'>
+      <div class='lista'>
+      </div>
+      <div class='add'>
+        <a href=''>add</a>
+      </div>
+    </div>
+  </body>
+  <script>
+    $('div.box').click(function(evt) {
+      var cor = $(this).css('background-color');
+      console.debug('Click', cor);
+      if (cor == 'rgb(255, 0, 0)')
+        $(this).css('background-color', 'rgb(0, 0, 0)');
+      else
+        $(this).css('background-color', 'rgb(255, 0, 0)');
+    });
+    var num = 1;
+
+    $('.container div.add').click(function() {
+      var elm = $('<div>').html(num++).addClass('item');
+      $('.container .lista').append(elm);
+      $(elm).slideDown();
+      return false;
+    });
+
+    $.get('https://raw.githubusercontent.com/trentm/json/master/package.json').done(function(data){
+      data = JSON.parse(data);
+      $('body').append($('<h1>').html(data['name']))
+               .append($('<h2>').html(data['description']))
+
+    });
+  </script>
+</html>
