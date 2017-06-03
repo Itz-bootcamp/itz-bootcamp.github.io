@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastrar projeto</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Cadastrar novo projeto</h1>
+    <form action="/project/new" method="post">
+      <label>Nome</label>
+      <input type='text' name='nome'/><br/>
+      <label>Custo</label>
+      <input type='text' name='custo'/><br/>
+      <label>Descrição</label>
+      <textarea name='descricao'></textarea><br/>
+      <input type='submit' value='Enviar'/>
+    </form>
+  </body>
+</html>

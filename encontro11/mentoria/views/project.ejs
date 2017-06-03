@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= project %></title>
+    <title>Projects</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script>
-      prompt("Executando no navegador");
-    </script>
+    <style>
+      div.projeto {
+        margin-bottom: 30px;
+        background-color: #F0F0F0;
+        border-bottom-color: #AAAAAA;
+        border-bottom-width: medium;
+        border-bottom-style: dashed;
+      }
+    </style>
   </head>
   <body>
-    <h1>Welcome to project <%= project %></h1>
-    <h2><%= ano %></h2>
+    <h1>Projectos atuais</h1>
+    <a href='/project/new'>Cadastrar novo projeto</a>
+    <% for(var i=0; i < projects.length; i++) { %>
+       <div class='projeto'>
+         <ul>
+         <li>
+           <b>Nome:</b><span><%= projects[i].nome %></span>
+         </li>
+         <li>
+           <b>Custo:</b><span><%= projects[i].custo %></span>
+         </li>
+         <li>
+           <b>Descrição:</b><span><%= projects[i].descricao %></span>
+         </li>
+         </ul>
+       </div>
+    <% } %>
   </body>
 
 </html>
