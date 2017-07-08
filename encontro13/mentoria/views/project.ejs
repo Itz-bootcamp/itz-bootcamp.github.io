@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Projects</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      div.projeto {
+        margin-bottom: 30px;
+        background-color: #F0F0F0;
+        border-bottom-color: #AAAAAA;
+        border-bottom-width: medium;
+        border-bottom-style: dashed;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Projectos atuais</h1>
+    <div>
+      <h3>Filtro</h3>
+      <form action="/project" method="get">
+        <label>Custo inicial</label>
+        <input type='text' name='valor_inicial' value="<%= valor_inicial %>"/><br/>
+        <label>Custo final</label>
+        <input type='text' name='valor_final' value="<%= valor_final %>"/><br/>
+        <input type='submit' value='Enviar'/>
+      </form>
+
+    </div>
+    <a href='/project/new'>Cadastrar novo projeto</a>
+    <% for(var i=0; i < projects.length; i++) { %>
+       <div class='projeto'>
+         <ul>
+         <li>
+           <b>Id:</b><span><%= projects[i].id %></span>
+         </li>
+         <li>
+           <b>Nome:</b><span><%= projects[i].nome %></span>
+         </li>
+         <li>
+           <b>Custo:</b><span><%= projects[i].custo %></span>
+         </li>
+         <li>
+           <b>Descrição:</b><span><%= projects[i].descricao %></span>
+         </li>
+         </ul>
+         <form action="/project/remove" method="get">
+           <input type='hidden' name='id' value="<%= projects[i].id %>"/>
+           <input type='submit' value='Remover'/>
+         </form>
+       </div>
+    <% } %>
+  </body>
+
+</html>
