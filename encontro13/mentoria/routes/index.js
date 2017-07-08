@@ -51,7 +51,6 @@ router.get('/project', function(req, res, next) {
       valor_final: req.query.valor_final
     });
   });
-
 });
 
 router.get('/project/new', function(req, res, next) {
@@ -71,6 +70,24 @@ router.post('/project/new', function(req, res, next) {
   //res.render('project_new');
   insertProject(req.body);
   res.redirect('/project');
+});
+
+// Rotas API
+router.get('/api/project', function(req, res, next) {
+  // consulta banco de dados
+  getProjects(req.query.valor_inicial, req.query.valor_final,
+    function(err, projects) {
+      console.log(projects);
+    res.send(projects);
+  });
+});
+
+router.post('/api/project/new', function(req, res, next) {
+  console.log('Req body', req.body);
+  // consulta banco de dados
+  //res.render('project_new');
+  insertProject(req.body);
+  res.redirect('/api/project');
 });
 
 module.exports = router;

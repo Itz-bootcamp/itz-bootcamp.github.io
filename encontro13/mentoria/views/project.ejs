@@ -3,6 +3,39 @@
   <head>
     <title>Projects</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/jquery-3.2.1.min.js'></script>
+    <script>
+      function filter() {
+        const data_filter = {
+          'valor_inicial': $("#valor_inicial").val(),
+          'valor_final': $("#valor_final").val()
+        }
+
+        $.get('/api/project', data_filter).done(function(result) {
+          console.debug('result', result);
+          renderProjects(result);
+        });
+      }
+
+      function renderProjects(projects) {
+        $('#projectsView').empty();
+        for (var i = 0; i < projects.length; i++) {
+          var projectUI = $('div.projeto.modelo').clone();
+          $(projectUI).find('li.id span').html(projects[i].id);
+          $(projectUI).find('li.nome span').html(projects[i].nome);
+          $(projectUI).find('li.custo span').html(projects[i].custo);
+          $(projectUI).find('li.descricao span').html(projects[i].descricao);
+          $(projectUI).removeClass('modelo');
+          $('#projectsView').append(projectUI);
+        }
+      }
+      $(document).ready(function() {
+        $('#filterBtn').click(function() {
+          filter();
+          return false;
+        });
+      });
+    </script>
     <style>
       div.projeto {
         margin-bottom: 30px;
@@ -11,44 +44,71 @@
         border-bottom-width: medium;
         border-bottom-style: dashed;
       }
+
+      div.projeto.modelo {
+        display: none;
+      }
     </style>
   </head>
   <body>
     <h1>Projectos atuais</h1>
     <div>
       <h3>Filtro</h3>
-      <form action="/project" method="get">
+      <form action="#" id='filterForm'>
         <label>Custo inicial</label>
-        <input type='text' name='valor_inicial' value="<%= valor_inicial %>"/><br/>
+        <input type='text' id='valor_inicial' name='valor_inicial' value="<%= valor_inicial %>"/><br/>
         <label>Custo final</label>
-        <input type='text' name='valor_final' value="<%= valor_final %>"/><br/>
-        <input type='submit' value='Enviar'/>
+        <input type='text' id='valor_final' name='valor_final' value="<%= valor_final %>"/><br/>
+        <input type='button' id="filterBtn" value='Enviar'/>
       </form>
 
     </div>
     <a href='/project/new'>Cadastrar novo projeto</a>
-    <% for(var i=0; i < projects.length; i++) { %>
-       <div class='projeto'>
-         <ul>
-         <li>
-           <b>Id:</b><span><%= projects[i].id %></span>
-         </li>
-         <li>
-           <b>Nome:</b><span><%= projects[i].nome %></span>
-         </li>
-         <li>
-           <b>Custo:</b><span><%= projects[i].custo %></span>
-         </li>
-         <li>
-           <b>Descrição:</b><span><%= projects[i].descricao %></span>
-         </li>
-         </ul>
-         <form action="/project/remove" method="get">
-           <input type='hidden' name='id' value="<%= projects[i].id %>"/>
-           <input type='submit' value='Remover'/>
-         </form>
-       </div>
-    <% } %>
+    <div id='projectsView'>
+      <% for(var i=0; i < projects.length; i++) { %>
+         <div class='projeto'>
+           <ul>
+           <li>
+             <b>Id:</b><span><%= projects[i].id %></span>
+           </li>
+           <li>
+             <b>Nome:</b><span><%= projects[i].nome %></span>
+           </li>
+           <li>
+             <b>Custo:</b><span><%= projects[i].custo %></span>
+           </li>
+           <li>
+             <b>Descrição:</b><span><%= projects[i].descricao %></span>
+           </li>
+           </ul>
+           <form action="/project/remove" method="get">
+             <input type='hidden' name='id' value="<%= projects[i].id %>"/>
+             <input type='submit' value='Remover'/>
+           </form>
+         </div>
+      <% } %>
+    </div>
+
+    <div class='projeto modelo'>
+      <ul>
+      <li class='id'>
+        <b >Id:</b><span></span>
+      </li>
+      <li class='nome'>
+        <b >Nome:</b><span></span>
+      </li>
+      <li class='custo'>
+        <b >Custo:</b><span></span>
+      </li>
+      <li class='descricao'>
+        <b >Descrição:</b><span></span>
+      </li>
+      </ul>
+      <form action="/project/remove" method="get">
+        <input type='hidden' name='id' value=""/>
+        <input type='submit' value='Remover'/>
+      </form>
+    </div>
   </body>
 
 </html>
